@@ -25,8 +25,8 @@
                 <td>{{ data.typeimg_category }}</td>
                 <td>{{ data.date_created_category }}</td>                    
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_category)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_category)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -35,6 +35,7 @@
     
     <script>
     import CategoriesService from '../../logic/CategoriesService'
+    import Swal from 'sweetalert2';
     
     export default {
         name:"CategoriesView",
@@ -63,7 +64,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await CategoriesService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -71,7 +72,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/categories');    
         }else{
           Swal.fire('Error al borrar!')
         }        

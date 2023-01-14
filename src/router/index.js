@@ -199,8 +199,8 @@ const routes = [
   },
   {
     path:'/newstate',
-    name:'NewStates',
-    component: NewStates
+    name:'NewState',
+    component: NewState
   },
   {
     path:'/editstate/:id',
