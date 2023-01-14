@@ -2,7 +2,7 @@
     <router-link :to="{ name: 'Home' }">Return</router-link>
     <h1> Roles</h1>
     <nav>
-    <router-link to="/newaddress">New Rol</router-link>
+    <router-link to="/newrole">New Rol</router-link>
   </nav>
 
     <br>
@@ -22,8 +22,8 @@
                 <td>{{ data.name_rol }}</td>
                 <td>{{ data.date_created_rol }}</td>                
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_rol)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_rol)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -32,6 +32,7 @@
     
     <script>
     import RolesService from '../../logic/RolesService'
+    import Swal from 'sweetalert2';
     
     export default {
         name:"RolesView",
@@ -60,7 +61,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await RolesService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -68,7 +69,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/roles');    
         }else{
           Swal.fire('Error al borrar!')
         }        

@@ -36,7 +36,7 @@
           <br>
 
           <input class="form-submit" type="submit" value="Save">   
-          <router-link class="lowGoback" to="/categories">Atrás</router-link>   
+          <router-link class="lowGoback" to="/categories">Return</router-link>   
         </form>    
     
     </template>

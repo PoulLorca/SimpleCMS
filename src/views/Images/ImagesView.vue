@@ -22,8 +22,8 @@
                 <td>{{ data.url_image }}</td>
                 <td>{{ data.date_created_image }}</td>                
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_image)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_image)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -32,6 +32,7 @@
     
     <script>
     import ImagesService from '../../logic/ImagesService'
+    import Swal from 'sweetalert2';
     
     export default {
         name:"ImagesView",
@@ -60,7 +61,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await ImagesService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -68,7 +69,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/images');    
         }else{
           Swal.fire('Error al borrar!')
         }        

@@ -64,7 +64,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await CategoriesService.delete(id);                
+        const response = await CitiesService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -72,7 +72,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.go('/categories');    
+          this.$router.go('/cities');    
         }else{
           Swal.fire('Error al borrar!')
         }        

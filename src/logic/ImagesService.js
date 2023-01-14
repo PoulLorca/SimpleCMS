@@ -33,7 +33,7 @@ var data = qs.stringify({
 //Config request
 var config = {
   method: 'delete',
-  url: `${environment.API_URL}/directions?id=${id}&nameId=id_direction&token=${tokenUser}`,
+  url: `${environment.API_URL}/images?id=${id}&nameId=id_image&token=${tokenUser}`,
   headers: {     
     'apikey': `${environment.API_KEY}`
   },
@@ -44,25 +44,22 @@ var config = {
 return axios(config)
 
 },
-register(id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+register(url_image) {
 
   let user = JSON.parse(auth.getUserLogged());  
   let userToken = user.token_user  
 
-  let date_created_direction = moment(new Date()).format("YYYY-MM-DD");
+  let date_created_image = moment(new Date()).format("YYYY-MM-DD");
 
 
   const data = qs.stringify(
-      { id_region_direction: `${id_region_direction}`,      
-      id_city_direction: `${id_city_direction}`,
-      id_commune_direction: `${id_commune_direction}`,
-      detail_direction: `${detail_direction}`,
-      date_created_direction: `${date_created_direction}`
+      { url_image: `${url_image}`,            
+      date_created_image: `${date_created_image}`
    });        
 
   var config = {
       method: 'post',
-      url: `${environment.API_URL}/directions?token=${userToken}&table=users&suffix=user&except`,
+      url: `${environment.API_URL}/images?token=${userToken}&table=users&suffix=user&except`,
       headers: {      
         'Access-Control-Allow-Origin': '*',             
         'apikey': `${environment.API_KEY}`, 

@@ -33,7 +33,7 @@ var data = qs.stringify({
 //Config request
 var config = {
   method: 'delete',
-  url: `${environment.API_URL}/directions?id=${id}&nameId=id_direction&token=${tokenUser}`,
+  url: `${environment.API_URL}/cities?id=${id}&nameId=id_city&token=${tokenUser}`,
   headers: {     
     'apikey': `${environment.API_KEY}`
   },
@@ -44,25 +44,22 @@ var config = {
 return axios(config)
 
 },
-register(id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+register(name_city) {
 
   let user = JSON.parse(auth.getUserLogged());  
   let userToken = user.token_user  
 
-  let date_created_direction = moment(new Date()).format("YYYY-MM-DD");
+  let date_created_city = moment(new Date()).format("YYYY-MM-DD");
 
 
   const data = qs.stringify(
-      { id_region_direction: `${id_region_direction}`,      
-      id_city_direction: `${id_city_direction}`,
-      id_commune_direction: `${id_commune_direction}`,
-      detail_direction: `${detail_direction}`,
-      date_created_direction: `${date_created_direction}`
+      { name_city: `${name_city}`,      
+      date_created_city: `${date_created_city}`      
    });        
 
   var config = {
       method: 'post',
-      url: `${environment.API_URL}/directions?token=${userToken}&table=users&suffix=user&except`,
+      url: `${environment.API_URL}/cities?token=${userToken}&table=users&suffix=user&except`,
       headers: {      
         'Access-Control-Allow-Origin': '*',             
         'apikey': `${environment.API_KEY}`, 

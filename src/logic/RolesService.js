@@ -33,7 +33,7 @@ var data = qs.stringify({
 //Config request
 var config = {
   method: 'delete',
-  url: `${environment.API_URL}/directions?id=${id}&nameId=id_direction&token=${tokenUser}`,
+  url: `${environment.API_URL}/roles?id=${id}&nameId=id_rol&token=${tokenUser}`,
   headers: {     
     'apikey': `${environment.API_KEY}`
   },
@@ -44,25 +44,22 @@ var config = {
 return axios(config)
 
 },
-register(id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+register(name_rol) {
 
   let user = JSON.parse(auth.getUserLogged());  
   let userToken = user.token_user  
 
-  let date_created_direction = moment(new Date()).format("YYYY-MM-DD");
+  let date_created_rol = moment(new Date()).format("YYYY-MM-DD");
 
 
   const data = qs.stringify(
-      { id_region_direction: `${id_region_direction}`,      
-      id_city_direction: `${id_city_direction}`,
-      id_commune_direction: `${id_commune_direction}`,
-      detail_direction: `${detail_direction}`,
-      date_created_direction: `${date_created_direction}`
+      { name_rol: `${name_rol}`,            
+      date_created_rol: `${date_created_rol}`
    });        
 
   var config = {
       method: 'post',
-      url: `${environment.API_URL}/directions?token=${userToken}&table=users&suffix=user&except`,
+      url: `${environment.API_URL}/roles?token=${userToken}&table=users&suffix=user&except`,
       headers: {      
         'Access-Control-Allow-Origin': '*',             
         'apikey': `${environment.API_KEY}`, 
@@ -78,7 +75,7 @@ register(id_region_direction, id_city_direction, id_commune_direction, detail_di
 getDirection(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/roles?select=*&linkTo=id_direction&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
