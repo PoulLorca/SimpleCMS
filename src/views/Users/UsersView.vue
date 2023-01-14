@@ -3,7 +3,7 @@
 <h1> Users </h1>
 <small>Only with direction associated</small>
 <nav>
-    <router-link to="/newaddress">New User</router-link>
+    <router-link to="/newuser">New User</router-link>
   </nav>
 
     <br>
@@ -29,8 +29,8 @@
                 <td>{{ data.name_rol }}</td>
                 <td>{{ data.date_created_user }}</td>
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_user)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_user)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -39,6 +39,7 @@
 
 <script>
 import UsersService from '../../logic/UsersService'
+import Swal from 'sweetalert2';
 
 export default {
     name:"UsersView",
@@ -67,7 +68,7 @@ export default {
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await UsersService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -75,7 +76,7 @@ export default {
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/users');    
         }else{
           Swal.fire('Error al borrar!')
         }        

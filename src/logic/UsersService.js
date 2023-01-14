@@ -33,7 +33,7 @@ var data = qs.stringify({
 //Config request
 var config = {
   method: 'delete',
-  url: `${environment.API_URL}/directions?id=${id}&nameId=id_direction&token=${tokenUser}`,
+  url: `${environment.API_URL}/users?id=${id}&nameId=id_user&token=${tokenUser}`,
   headers: {     
     'apikey': `${environment.API_KEY}`
   },
@@ -44,35 +44,31 @@ var config = {
 return axios(config)
 
 },
-register(id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+register(name_user,email_user, password_user,direction_user,rol_user) {
+    let date_created_user = moment(new Date()).format("YYYY-MM-DD");
 
-  let user = JSON.parse(auth.getUserLogged());  
-  let userToken = user.token_user  
+    const data = qs.stringify(
+        { name_user:`${name_user}`,
+          email_user: `${email_user}`,
+          password_user: `${password_user}`,
+          id_direction_user:`${direction_user}`,
+          id_rol_user:`${rol_user}`,
+          date_created_user: `${date_created_user}`
+        });     
 
-  let date_created_direction = moment(new Date()).format("YYYY-MM-DD");
+    var config = {
+        method: 'post',
+        url: `${environment.API_URL}/users?register=true&suffix=user`,
+        headers: {      
+          'Access-Control-Allow-Origin': '*',     
+          'apikey': `${environment.API_KEY}`, 
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data : data
+      };
 
-
-  const data = qs.stringify(
-      { id_region_direction: `${id_region_direction}`,      
-      id_city_direction: `${id_city_direction}`,
-      id_commune_direction: `${id_commune_direction}`,
-      detail_direction: `${detail_direction}`,
-      date_created_direction: `${date_created_direction}`
-   });        
-
-  var config = {
-      method: 'post',
-      url: `${environment.API_URL}/directions?token=${userToken}&table=users&suffix=user&except`,
-      headers: {      
-        'Access-Control-Allow-Origin': '*',             
-        'apikey': `${environment.API_KEY}`, 
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data : data
-    };    
-
-    return axios(config)        
-},
+    return axios(config)    
+  },  
 
 //Get direction
 getDirection(id){        

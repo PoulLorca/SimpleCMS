@@ -2,7 +2,7 @@
     <router-link :to="{ name: 'Home' }">Return</router-link>
     <h1> Directions</h1>
     <nav>
-    <router-link to="/newaddress">New Direction</router-link>
+    <router-link to="/newdirection">New Direction</router-link>
   </nav>
 
     <br>
@@ -37,6 +37,7 @@
     
     <script>
   import DirectionsService from '../../logic/DirectionsService'
+  import Swal from 'sweetalert2';
   
     export default {
         name:"DirectionsView",
@@ -65,7 +66,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await DirectionsService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -73,7 +74,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/directions');    
         }else{
           Swal.fire('Error al borrar!')
         }        
