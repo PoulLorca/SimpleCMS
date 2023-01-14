@@ -39,7 +39,7 @@
     </template>
     
     <script>
-    import ProductsService from '../logic/ProductsService'
+    import ProductsService from '../../logic/ProductsService'
     
     export default {
         name:"ProductsView",

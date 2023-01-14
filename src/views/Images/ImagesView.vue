@@ -1,8 +1,8 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> Regions</h1>
+    <h1> Images</h1>
     <nav>
-    <router-link to="/newaddress">New Region</router-link>
+    <router-link to="/newimage">New Image</router-link>
   </nav>
 
     <br>
@@ -12,15 +12,15 @@
         <table style="width:100%">
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Date Created</th>
+                <th>URL</th>
+                <th>Date Created</th>                
             </tr>
         <tr
         v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ data.name_region }}</td>
-                <td>{{ data.date_created_region }}</td>                
+                <td>{{ data.url_image }}</td>
+                <td>{{ data.date_created_image }}</td>                
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -31,10 +31,10 @@
     </template>
     
     <script>
-    import RegionsService from '../logic/RegionsService'
+    import ImagesService from '../../logic/ImagesService'
     
     export default {
-        name:"RegionsView",
+        name:"ImagesView",
         data: () => ({
     info : null
   }),
@@ -45,7 +45,7 @@
   methods: {
     async getData() {
       try {
-        const response = await RegionsService.get();                
+        const response = await ImagesService.get();                
         const data=response.data
 
         this.info=data.results;

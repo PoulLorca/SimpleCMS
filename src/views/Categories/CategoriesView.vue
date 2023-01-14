@@ -1,8 +1,8 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> States</h1>
-    <nav>
-    <router-link to="/newaddress">New State</router-link>
+    <h1> Categories</h1>
+<nav>
+    <router-link to="/newcategory">New Category</router-link>
   </nav>
 
     <br>
@@ -13,14 +13,17 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Date Created</th>                
+                <th>Type Image</th>
+                <th>Date Created</th>
+                <th>Acciones</th>
             </tr>
         <tr
         v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ data.name_state }}</td>
-                <td>{{ data.date_created_state }}</td>                
+                <td>{{ data.name_category }}</td>
+                <td>{{ data.typeimg_category }}</td>
+                <td>{{ data.date_created_category }}</td>                    
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -31,10 +34,10 @@
     </template>
     
     <script>
-    import StatesService from '../logic/StatesService'
+    import CategoriesService from '../../logic/CategoriesService'
     
     export default {
-        name:"StatesView",
+        name:"CategoriesView",
         data: () => ({
     info : null
   }),
@@ -45,7 +48,7 @@
   methods: {
     async getData() {
       try {
-        const response = await StatesService.get();                
+        const response = await CategoriesService.get();                
         const data=response.data
 
         this.info=data.results;
@@ -76,8 +79,8 @@
         console.log(error)
       }
     }
-  }
-    }
+  }  
+}
     </script>
     
     <style lang="css" scoped>

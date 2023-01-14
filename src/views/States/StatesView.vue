@@ -1,8 +1,8 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> Directions</h1>
+    <h1> States</h1>
     <nav>
-    <router-link to="/newaddress">New Direction</router-link>
+    <router-link to="/newaddress">New State</router-link>
   </nav>
 
     <br>
@@ -12,20 +12,15 @@
         <table style="width:100%">
             <tr>
                 <th>Id</th>
-                <th>Region</th>
-                <th>Ciudad</th>
-                <th>Comuna</th>
-                <th>Detalle</th>
-                <th>Acciones</th>
+                <th>Name</th>
+                <th>Date Created</th>                
             </tr>
         <tr
-        v-for="direccion, index in info"
+        v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ direccion.name_region }}</td>
-                <td>{{ direccion.name_city }}</td>
-                <td>{{ direccion.name_commune }}</td>    
-                <td>{{ direccion.detail_direction }}</td>
+                <td>{{ data.name_state }}</td>
+                <td>{{ data.date_created_state }}</td>                
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -36,10 +31,10 @@
     </template>
     
     <script>
-  import DirectionsService from '../logic/DirectionsService'
-  
+    import StatesService from '../../logic/StatesService'
+    
     export default {
-        name:"DirectionsView",
+        name:"StatesView",
         data: () => ({
     info : null
   }),
@@ -50,7 +45,7 @@
   methods: {
     async getData() {
       try {
-        const response = await DirectionsService.get();                
+        const response = await StatesService.get();                
         const data=response.data
 
         this.info=data.results;

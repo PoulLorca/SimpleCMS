@@ -1,8 +1,8 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> Categories</h1>
-<nav>
-    <router-link to="/newcategory">New Category</router-link>
+    <h1> Roles</h1>
+    <nav>
+    <router-link to="/newaddress">New Rol</router-link>
   </nav>
 
     <br>
@@ -13,17 +13,14 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Type Image</th>
-                <th>Date Created</th>
-                <th>Acciones</th>
+                <th>Date Created</th>                
             </tr>
         <tr
         v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ data.name_category }}</td>
-                <td>{{ data.typeimg_category }}</td>
-                <td>{{ data.date_created_category }}</td>                    
+                <td>{{ data.name_rol }}</td>
+                <td>{{ data.date_created_rol }}</td>                
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -34,10 +31,10 @@
     </template>
     
     <script>
-    import CategoriesService from '../logic/CategoriesService'
+    import RolesService from '../../logic/RolesService'
     
     export default {
-        name:"CategoriesView",
+        name:"RolesView",
         data: () => ({
     info : null
   }),
@@ -48,7 +45,7 @@
   methods: {
     async getData() {
       try {
-        const response = await CategoriesService.get();                
+        const response = await RolesService.get();                
         const data=response.data
 
         this.info=data.results;
@@ -79,8 +76,8 @@
         console.log(error)
       }
     }
-  }  
-}
+  }
+    }
     </script>
     
     <style lang="css" scoped>

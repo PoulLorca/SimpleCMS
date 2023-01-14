@@ -1,8 +1,8 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> Roles</h1>
+    <h1> Communes</h1>
     <nav>
-    <router-link to="/newaddress">New Rol</router-link>
+    <router-link to="/newcommune">New Commune</router-link>
   </nav>
 
     <br>
@@ -14,13 +14,14 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Date Created</th>                
+                <th>Acciones</th>
             </tr>
         <tr
         v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ data.name_rol }}</td>
-                <td>{{ data.date_created_rol }}</td>                
+                <td>{{ data.name_commune }}</td>
+                <td>{{ data.date_created_commune }}</td>                
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -31,10 +32,10 @@
     </template>
     
     <script>
-    import RolesService from '../logic/RolesService'
-    
+ import CommunesService from '../../logic/CommunesService'
+
     export default {
-        name:"RolesView",
+        name:"CommunesView",
         data: () => ({
     info : null
   }),
@@ -45,7 +46,7 @@
   methods: {
     async getData() {
       try {
-        const response = await RolesService.get();                
+        const response = await CommunesService.get();                
         const data=response.data
 
         this.info=data.results;

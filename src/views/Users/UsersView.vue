@@ -1,8 +1,9 @@
 <template>
     <router-link :to="{ name: 'Home' }">Return</router-link>
-    <h1> Cities</h1>
-    <nav>
-    <router-link to="/newcity">New City</router-link>
+<h1> Users </h1>
+<small>Only with direction associated</small>
+<nav>
+    <router-link to="/newaddress">New User</router-link>
   </nav>
 
     <br>
@@ -12,16 +13,21 @@
         <table style="width:100%">
             <tr>
                 <th>Id</th>
-                <th>Name</th>                
+                <th>Name</th>
+                <th>Email</th>
+                <th>Direction</th>
+                <th>Rol</th>                
                 <th>Date Created</th>
-                <th>Acciones</th>
             </tr>
         <tr
         v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ data.name_city }}</td>
-                <td>{{ data.date_created_city }}</td>                
+                <td>{{ data.name_user }}</td>
+                <td>{{ data.email_user }}</td>
+                <td>{{ data.detail_direction }}</td>    
+                <td>{{ data.name_rol }}</td>
+                <td>{{ data.date_created_user }}</td>
                 <td>
                     <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
                     <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
@@ -29,14 +35,14 @@
         </tr>      
     </table>
 </div>   
-    </template>
-    
-    <script>
-import CitiesService from '../logic/CitiesService'    
-    
-    export default {
-        name:"CitiesView",
-        data: () => ({
+</template>
+
+<script>
+import UsersService from '../../logic/UsersService'
+
+export default {
+    name:"UsersView",
+    data: () => ({
     info : null
   }),
   created(){        
@@ -46,7 +52,7 @@ import CitiesService from '../logic/CitiesService'
   methods: {
     async getData() {
       try {
-        const response = await CitiesService.get();                
+        const response = await UsersService.get();                
         const data=response.data
 
         this.info=data.results;
@@ -78,11 +84,11 @@ import CitiesService from '../logic/CitiesService'
       }
     }
   }
-    }
-    </script>
-    
-    <style lang="css" scoped>
-    table, th, td {
+}
+</script>
+
+<style lang="css" scoped>
+table, th, td {
   border:1px solid black;
 }
 
@@ -93,4 +99,4 @@ import CitiesService from '../logic/CitiesService'
 .deleteButton:hover{
     cursor:pointer;
 } 
-    </style>
+</style>
