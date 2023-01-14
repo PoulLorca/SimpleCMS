@@ -1,22 +1,84 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Login from '../views/Login.vue'
+import Layout from '../components/Layout.vue'
+import CategoriesView from '../views/CategoriesView.vue'
+import CitiesView from '../views/CitiesView.vue'
+import CommunesView from '../views/CommunesView.vue'
+import DirectionsView from '../views/DirectionsView.vue'
+import ImagesView from '../views/ImagesView.vue'
+import ProductsView from '../views/ProductsView.vue'
+import RegionsView from '../views/RegionsView.vue'
+import RolesView from '../views/RolesView.vue'
+import ShopsView from '../views/ShopsView.vue'
+import StatesView from '../views/StatesView.vue'
+import UsersView from '../views/UsersView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'Login',
+    component: Login
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
-  }
+    path:'/home',
+    name: 'Home',
+    component: Layout
+  },  
+  {
+    path:'/categories',
+    name:'Categories',
+    component: CategoriesView
+  },
+  {
+    path:'/cities',
+    name:'Cities',
+    component: CitiesView
+  },
+  {
+    path:'/communes',
+    name:'Communes',
+    component: CommunesView
+  },
+  {
+    path:'/directions',
+    name:'Directions',
+    component: DirectionsView
+  },
+  {
+    path:'/images',
+    name:'Images',
+    component: ImagesView
+  },
+  {
+    path:'/products',
+    name:'Products',
+    component: ProductsView
+  },
+  {
+    path:'/regions',
+    name:'Regions',
+    component: RegionsView
+  },
+  {
+    path:'/roles',
+    name:'Roles',
+    component: RolesView
+  },
+  {
+    path:'/shops',
+    name:'Shops',
+    component: ShopsView
+  },
+  {
+    path:'/states',
+    name:'States',
+    component: RolesView
+  },
+  {
+    path:'/users',
+    name:'Users',
+    component: UsersView
+  }, 
 ]
 
 const router = createRouter({
