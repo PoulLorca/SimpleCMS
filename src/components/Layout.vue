@@ -19,8 +19,14 @@
         </ul>
     </nav>
     <main>
+        <small>EN</small>
+        <h1>Welcome!</h1>
+        <h2>Welcome to the Content Manager System of Bagual</h2>
+        <p>Comming soon with graphs and more features!</p>
+        <hr>
+        <small>ES</small>
         <h1>Bienvenido!</h1>
-        <h2>Bienvenido al sistema de administración de contenido de Bagual</h2>
+        <h2>Bienvenido al Sistema de Gestor de Contenido de Bagual</h2>
         <p>Proximamante con gráficos y más funciones!</p>
     </main>
 </div>

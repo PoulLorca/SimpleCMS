@@ -1,8 +1,8 @@
 <template>
-    <router-link :to="{ name: 'Home' }">Regresar</router-link>
-    <p> Products Works</p>
+    <router-link :to="{ name: 'Home' }">Return</router-link>
+    <h1> Products</h1>
     <nav>
-    <router-link to="/newaddress">Nueva Direccion</router-link>
+    <router-link to="/newproduct">New Product</router-link>
   </nav>
 
     <br>
@@ -12,23 +12,26 @@
         <table style="width:100%">
             <tr>
                 <th>Id</th>
-                <th>Region</th>
-                <th>Ciudad</th>
-                <th>Comuna</th>
-                <th>Detalle</th>
-                <th>Acciones</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>URL image</th>
+                <th>Date Created</th>                
             </tr>
         <tr
-        v-for="direccion, index in info"
+        v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ direccion.name_region }}</td>
-                <td>{{ direccion.name_city }}</td>
-                <td>{{ direccion.name_commune }}</td>    
-                <td>{{ direccion.detail_direction }}</td>
+                <td>{{ data.title_product }}</td>
+                <td>{{ data.price_product }}</td>
+                <td>{{ data.description_product }}</td>    
+                <td>{{ data.name_category }}</td>  
+                <td>{{ data.url_image }}</td>
+                <td>{{ data.date_created_product }}</td>
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Editar</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Eliminar</a>
+                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -36,6 +39,7 @@
     </template>
     
     <script>
+    import ProductsService from '../logic/ProductsService'
     
     export default {
         name:"ProductsView",
@@ -49,7 +53,7 @@
   methods: {
     async getData() {
       try {
-        const response = await addresssrvice.get();                
+        const response = await ProductsService.get();                
         const data=response.data
 
         this.info=data.results;
@@ -85,4 +89,15 @@
     </script>
     
     <style lang="css" scoped>
+    table, th, td {
+  border:1px solid black;
+}
+
+.editButton:hover{
+    cursor:pointer;
+} 
+
+.deleteButton:hover{
+    cursor:pointer;
+} 
     </style>

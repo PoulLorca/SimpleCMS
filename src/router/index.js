@@ -72,7 +72,7 @@ const routes = [
   {
     path:'/states',
     name:'States',
-    component: RolesView
+    component: StatesView
   },
   {
     path:'/users',

@@ -1,8 +1,8 @@
 <template>
-    <router-link :to="{ name: 'Home' }">Regresar</router-link>
-    <p> Roles Works</p>
+    <router-link :to="{ name: 'Home' }">Return</router-link>
+    <h1> Roles</h1>
     <nav>
-    <router-link to="/newaddress">Nueva Direccion</router-link>
+    <router-link to="/newaddress">New Rol</router-link>
   </nav>
 
     <br>
@@ -12,23 +12,18 @@
         <table style="width:100%">
             <tr>
                 <th>Id</th>
-                <th>Region</th>
-                <th>Ciudad</th>
-                <th>Comuna</th>
-                <th>Detalle</th>
-                <th>Acciones</th>
+                <th>Name</th>
+                <th>Date Created</th>                
             </tr>
         <tr
-        v-for="direccion, index in info"
+        v-for="data, index in info"
         class="direccion">            
                 <td>{{ index + 1 }}</td>
-                <td>{{ direccion.name_region }}</td>
-                <td>{{ direccion.name_city }}</td>
-                <td>{{ direccion.name_commune }}</td>    
-                <td>{{ direccion.detail_direction }}</td>
+                <td>{{ data.name_rol }}</td>
+                <td>{{ data.date_created_rol }}</td>                
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Editar</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Eliminar</a>
+                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -36,6 +31,7 @@
     </template>
     
     <script>
+    import RolesService from '../logic/RolesService'
     
     export default {
         name:"RolesView",
@@ -49,7 +45,7 @@
   methods: {
     async getData() {
       try {
-        const response = await addresssrvice.get();                
+        const response = await RolesService.get();                
         const data=response.data
 
         this.info=data.results;
@@ -85,4 +81,15 @@
     </script>
     
     <style lang="css" scoped>
+    table, th, td {
+  border:1px solid black;
+}
+
+.editButton:hover{
+    cursor:pointer;
+} 
+
+.deleteButton:hover{
+    cursor:pointer;
+} 
     </style>
