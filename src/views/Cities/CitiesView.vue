@@ -57,7 +57,7 @@ import Swal from 'sweetalert2';
       }
     }, 
     edit: async function(id){
-      this.$router.push(`/editaddress/${id}`);      
+      this.$router.push(`/editcity/${id}`);      
     } ,         
     erase: async function(id){        
       try {

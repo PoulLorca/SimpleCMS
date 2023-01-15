@@ -61,7 +61,7 @@
       }
     }, 
     edit: async function(id){
-      this.$router.push(`/editaddress/${id}`);      
+      this.$router.push(`/editdirection/${id}`);      
     } ,         
     erase: async function(id){        
       try {

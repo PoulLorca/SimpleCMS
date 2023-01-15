@@ -59,12 +59,12 @@
       }
     }, 
     edit: async function(id){
-      this.$router.push(`/editaddress/${id}`);      
+      this.$router.push(`/editcategory/${id}`);      
     } ,         
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await CitiesService.delete(id);                
+        const response = await CategoriesService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){

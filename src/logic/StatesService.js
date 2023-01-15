@@ -72,10 +72,10 @@ register(name_state) {
 },
 
 //Get direction
-getDirection(id){        
+getState(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/states?select=*&linkTo=id_state&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -84,22 +84,19 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_state, name_state) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+            { name_state: `${name_state}`,                  
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/states?id=${id_state}&nameId=id_state&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             

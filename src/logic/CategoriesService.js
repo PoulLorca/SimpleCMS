@@ -75,10 +75,10 @@ register(name_category, typeimg_category) {
 },
 
 //Get direction
-getDirection(id){        
+getCategory(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/categories?select=*&linkTo=id_category&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -87,22 +87,20 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_category,name_category,typeimg_category) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+            { name_category: `${name_category}`,      
+            typeimg_category: `${typeimg_category}`,            
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/categories?id=${id_category}&nameId=id_category&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             

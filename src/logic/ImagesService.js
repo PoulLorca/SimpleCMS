@@ -72,10 +72,10 @@ register(url_image) {
 },
 
 //Get direction
-getDirection(id){        
+getImage(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/images?select=*&linkTo=id_image&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -84,22 +84,19 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_image,url_image) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+            { url_image: `${url_image}`,                  
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/images?id=${id_image}&nameId=id_image&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             

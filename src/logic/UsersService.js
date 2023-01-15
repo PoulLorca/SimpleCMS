@@ -71,10 +71,10 @@ register(name_user,email_user, password_user,direction_user,rol_user) {
   },  
 
 //Get direction
-getDirection(id){        
+getUser(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/users?select=*&linkTo=id_user&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -83,22 +83,23 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_user,name_user,email_user,password_user,id_direction_user,id_rol_user) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+            { name_user: `${name_user}`,                  
+            email_user: `${email_user}`,                  
+            password_user: `${password_user}`,
+            id_direction_user: `${id_direction_user}`,
+            id_rol_user: `${id_rol_user}`,
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/users?id=${id_user}&nameId=id_user&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             

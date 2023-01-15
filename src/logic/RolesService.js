@@ -72,10 +72,10 @@ register(name_rol) {
 },
 
 //Get direction
-getDirection(id){        
+getRol(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/roles?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/roles?select=*&linkTo=id_rol&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -84,22 +84,19 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_rol,name_rol) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+            { name_rol: `${name_rol}`,                  
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/roles?id=${id_rol}&nameId=id_rol&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             

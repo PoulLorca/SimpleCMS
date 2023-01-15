@@ -75,10 +75,10 @@ register(id_user_shop, id_product_shop, ammount_shop, id_direction_shop,id_state
 },
 
 //Get direction
-getDirection(id){        
+getShop(id){        
   var config = {
     method: 'get',
-    url: `${environment.API_URL}/directions?select=*&linkTo=id_direction&equalTo=${id}`,
+    url: `${environment.API_URL}/shops?select=*&linkTo=id_shop&equalTo=${id}`,
     headers: {     
       'apikey': `${environment.API_KEY}`
     }
@@ -87,22 +87,23 @@ getDirection(id){
   return axios(config)
   
       },
-      update(id_direction,id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
+      update(id_shop,id_user_shop, id_product_shop, ammount_shop, id_direction_shop,id_state_shop) {
 
         let user = JSON.parse(auth.getUserLogged());  
         let userToken = user.token_user                
       
       
         const data = qs.stringify(
-            { id_region_direction: `${id_region_direction}`,      
-            id_city_direction: `${id_city_direction}`,
-            id_commune_direction: `${id_commune_direction}`,
-            detail_direction: `${detail_direction}`,            
+          { id_user_shop: `${id_user_shop}`,      
+          id_product_shop: `${id_product_shop}`,
+          ammount_shop: `${ammount_shop}`,
+          id_direction_shop: `${id_direction_shop}`,
+          id_state_shop: `${id_state_shop}`          
          });        
       
         var config = {
             method: 'put',
-            url: `${environment.API_URL}/directions?id=${id_direction}&nameId=id_direction&token=${userToken}`,
+            url: `${environment.API_URL}/shops?id=${id_shop}&nameId=id_shop&token=${userToken}`,
             
             headers: {      
               'Access-Control-Allow-Origin': '*',             
