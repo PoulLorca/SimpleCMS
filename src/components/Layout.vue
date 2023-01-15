@@ -5,17 +5,18 @@
     </header>
     <nav>
         <ul>
-            <li><router-link :to="{ name: 'Categories' }">Categories</router-link></li>
-            <li><router-link :to="{ name: 'Cities' }">Cities</router-link></li>
-            <li><router-link :to="{ name: 'Communes' }">Communes</router-link></li>
-            <li><router-link :to="{ name: 'Directions' }">Directions</router-link></li>
-            <li><router-link :to="{ name: 'Images' }">Images</router-link></li>
-            <li><router-link :to="{ name: 'Products' }">Products</router-link></li>
-            <li><router-link :to="{ name: 'Regions' }">Regions</router-link></li>
-            <li><router-link :to="{ name: 'Roles' }">Roles</router-link></li>
-            <li><router-link :to="{ name: 'Shops' }">Shops</router-link></li>
-            <li><router-link :to="{ name: 'States' }">States</router-link></li>
-            <li><router-link :to="{ name: 'Users' }">Users</router-link></li>            
+            <li class="link"><router-link id="textlink" :to="{ name: 'Categories' }">Categories</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Cities' }">Cities</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Communes' }">Communes</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Directions' }">Directions</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Images' }">Images</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Products' }">Products</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Regions' }">Regions</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Roles' }">Roles</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Shops' }">Shops</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'States' }">States</router-link></li>
+            <li class="link"><router-link id="textlink" :to="{ name: 'Users' }">Users</router-link></li>            
+            <li class="link"><a id="textlink" v-on:click="logOut()" >Log Out</a></li>            
         </ul>
     </nav>
     <main>
@@ -33,6 +34,20 @@
 </template>
 
 <script>
+import auth from '@/logic/auth';
+
+export default {
+    data: () => ({
+
+    }),
+    methods:{
+        logOut: async function(){
+            const response = await auth.logout();
+            this.$router.push('/');
+        }
+    }
+
+}
 </script>
 
 <style lang="css" scoped>
@@ -71,4 +86,24 @@ div main {
     background-color: #f3f8fb;
     padding: 1em;
 }
+
+.link{
+    background-color: white;
+    transition: all 300ms;
+}
+
+.link:hover {
+    cursor: pointer;
+    background-color: #3e51b5;    
+    border-radius: 25px;        
+}
+
+.link:hover #textlink{
+    color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
 </style>

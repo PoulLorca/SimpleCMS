@@ -33,7 +33,7 @@ var data = qs.stringify({
 //Config request
 var config = {
   method: 'delete',
-  url: `${environment.API_URL}/directions?id=${id}&nameId=id_direction&token=${tokenUser}`,
+  url: `${environment.API_URL}/shops?id=${id}&nameId=id_shop&token=${tokenUser}`,
   headers: {     
     'apikey': `${environment.API_KEY}`
   },
@@ -44,25 +44,25 @@ var config = {
 return axios(config)
 
 },
-register(id_region_direction, id_city_direction, id_commune_direction, detail_direction) {
-
+register(id_user_shop, id_product_shop, ammount_shop, id_direction_shop,id_state_shop) {  
   let user = JSON.parse(auth.getUserLogged());  
   let userToken = user.token_user  
 
-  let date_created_direction = moment(new Date()).format("YYYY-MM-DD");
+  let date_created_shop = moment(new Date()).format("YYYY-MM-DD");
 
 
   const data = qs.stringify(
-      { id_region_direction: `${id_region_direction}`,      
-      id_city_direction: `${id_city_direction}`,
-      id_commune_direction: `${id_commune_direction}`,
-      detail_direction: `${detail_direction}`,
-      date_created_direction: `${date_created_direction}`
+      { id_user_shop: `${id_user_shop}`,      
+      id_product_shop: `${id_product_shop}`,
+      ammount_shop: `${ammount_shop}`,
+      id_direction_shop: `${id_direction_shop}`,
+      id_state_shop: `${id_state_shop}`,
+      date_created_shop: `${date_created_shop}`
    });        
 
   var config = {
       method: 'post',
-      url: `${environment.API_URL}/directions?token=${userToken}&table=users&suffix=user&except`,
+      url: `${environment.API_URL}/shops?token=${userToken}&table=users&suffix=user&except`,
       headers: {      
         'Access-Control-Allow-Origin': '*',             
         'apikey': `${environment.API_KEY}`, 

@@ -2,7 +2,7 @@
     <router-link :to="{ name: 'Home' }">Return</router-link>
     <h1> Shops</h1>
     <nav>
-    <router-link to="/newaddress">New Shop</router-link>
+    <router-link to="/newshop">New Shop</router-link>
   </nav>
 
     <br>
@@ -30,8 +30,8 @@
                 <td>{{ data.name_state }}</td>
                 <td>{{ data.date_created_shop }}</td>
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_shop)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_shop)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -40,6 +40,7 @@
     
     <script>
     import ShopsService from '../../logic/ShopsService'
+    import Swal from 'sweetalert2';
     
     export default {
         name:"ShopsView",
@@ -68,7 +69,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await ShopsService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -76,7 +77,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/shops');    
         }else{
           Swal.fire('Error al borrar!')
         }        

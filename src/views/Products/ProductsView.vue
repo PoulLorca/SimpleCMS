@@ -30,8 +30,8 @@
                 <td>{{ data.url_image }}</td>
                 <td>{{ data.date_created_product }}</td>
                 <td>
-                    <a class="editButton" v-on:click="edit(direccion.id_direction)">Edit</a> |
-                    <a class="deleteButton" v-on:click="erase(direccion.id_direction)">Delete</a>
+                    <a class="editButton" v-on:click="edit(data.id_product)">Edit</a> |
+                    <a class="deleteButton" v-on:click="erase(data.id_product)">Delete</a>
                 </td>
         </tr>      
     </table>
@@ -40,6 +40,7 @@
     
     <script>
     import ProductsService from '../../logic/ProductsService'
+    import Swal from 'sweetalert2';
     
     export default {
         name:"ProductsView",
@@ -68,7 +69,7 @@
     erase: async function(id){        
       try {
         //Execute delete
-        const response = await addresssrvice.delete(id);                
+        const response = await ProductsService.delete(id);                
         const data=response.data.status                
 
         if(data == 200){
@@ -76,7 +77,7 @@
 
           //Reload page
           //location.reload();
-          this.$router.push('/address');    
+          this.$router.go('/products');    
         }else{
           Swal.fire('Error al borrar!')
         }        
